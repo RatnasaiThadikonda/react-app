@@ -20,7 +20,7 @@ function App() {
         <center>
         <Display name={name} />
         <button onClick = {()=> setName(name+1) }>
-          Click
+          ClickMe
         </button>
         <input value={val} onChange={(event) => [console.log(event), setVal(event.target.value)]} type="text" />
 
