@@ -1,13 +1,14 @@
+import axios from 'axios'
 import React , {useEffect, useState} from 'react'
 
 const App = () => {
   const [data , setData] = useState([])
   useEffect(()=> {
-    fetch('https://jsonplaceholder.typicode.com/todos').then(
-      response => response.json()
-    ).then(
-      json => setData(json)
+    axios.get('https://jsonplaceholder.typicode.com/todos').then(
+      res => 
+      setData(res.data)
     )
+
   } , [])
   return (
     <div>
