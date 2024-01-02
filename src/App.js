@@ -1,44 +1,23 @@
-// App.js
+import React from 'react';
+import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import Dashboard from './components/Dashboard';
 
-import React, { useState } from "react";
-import "./App.css"; // Import your styles if needed
-import axios from 'axios'
-
-function App() {
-
-  const [data, setData] = useState({
-    username: "",
-    email:"",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const changeHandler =e =>{
-    setData({...data, [e.target.name]:e.target.value})
-  }
-  const submitHandler = e =>{
-    e.preventDefault()
-    console.log(data );
-    axios.post('https://reactlearning-94f88-default-rtdb.firebaseio.com/.json/' , data).then(
-()=> alert("submitted Successfully")
-    )
-  }
-
-  const { username, password , email , confirmPassword } = data;
+const App = () => {
   return (
-    <div >
-      <center>
-        <form autoComplete="off" onSubmit={submitHandler}>
-          <input  value={username} name="username" type="text" onChange={changeHandler} /> <br/>
-          <input  value={email} name="email" type="email" onChange={changeHandler} /> <br/>
-          <input value={password} name="password" type="password" onChange={changeHandler} /> <br/>
-          <input value={confirmPassword} name="confirmPassword" type="password" onChange={changeHandler} /> <br/>
-          <input type="submit" name="submit" />
-        </form>
-      </center>
-
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/dashboard/:name" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
