@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import "./App.css"; // Import your styles if needed
-
+import axios from 'axios'
 
 function App() {
 
@@ -18,7 +18,10 @@ function App() {
   }
   const submitHandler = e =>{
     e.preventDefault()
-    console.log(data )
+    console.log(data );
+    axios.post('https://reactlearning-94f88-default-rtdb.firebaseio.com/.json/' , data).then(
+()=> alert("submitted Successfully")
+    )
   }
 
   const { username, password , email , confirmPassword } = data;
